@@ -23,7 +23,7 @@ export default function Home() {
       <div style={{ background: '#FFF9E6', border: '1px solid #FFE58F', padding: '16px 20px', borderRadius: '8px', marginBottom: '32px', display: 'flex', gap: '16px', alignItems: 'center' }}>
         <div style={{ background: '#FFCD00', width: '32px', height: '32px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '18px' }}>!</div>
         <div style={{ fontSize: '14px', color: '#856404' }}>
-          <strong>Security Alert:</strong> We noticed a sign-on to your account from a new device. If this wasn't you, please <a href="/security" style={{ color: 'var(--wf-blue)', fontWeight: 600 }}>review your activity</a> immediately.
+          <strong>Security Alert:</strong> We noticed a sign-on to your account from a new device. If this wasn&apos;t you, please <a href="/security" style={{ color: 'var(--wf-blue)', fontWeight: 600 }}>review your activity</a> immediately.
         </div>
       </div>
 

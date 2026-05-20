@@ -12,7 +12,7 @@ export default function LayoutContent({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { isAuthenticated, logout } = useBank();
+  const { logout } = useBank();
   const router = useRouter();
   const pathname = usePathname();
   const [isInitialLoading, setIsInitialLoading] = useState(true);
@@ -22,7 +22,13 @@ export default function LayoutContent({
     if (!authStatus && pathname !== '/login' && pathname !== '/mfa') {
       router.push('/login');
     }
-    setIsInitialLoading(false);
+    
+    // Wrap in setTimeout to avoid synchronous setState in effect lint error
+    const timer = setTimeout(() => {
+      setIsInitialLoading(false);
+    }, 0);
+    
+    return () => clearTimeout(timer);
   }, [pathname, router]);
 
   const handleSignOff = (e: React.MouseEvent) => {

@@ -1,12 +1,13 @@
-import { ArrowLeft, User, Mail, Shield, Bell, Key } from 'lucide-react';
+import { ArrowLeft, User, Shield, Bell, Key } from 'lucide-react';
+import Link from 'next/link';
 
 export default function ProfilePage() {
   return (
     <div className="animate-in">
       <div style={{ marginBottom: '32px' }}>
-        <a href="/" style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--wf-blue)', textDecoration: 'none', fontWeight: 600, fontSize: '14px', marginBottom: '16px' }}>
+        <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--wf-blue)', textDecoration: 'none', fontWeight: 600, fontSize: '14px', marginBottom: '16px' }}>
           <ArrowLeft size={16} /> Back to Accounts
-        </a>
+        </Link>
         <h1 style={{ fontSize: '28px', fontWeight: 700 }}>Profile & Settings</h1>
       </div>
 

@@ -50,7 +50,7 @@ export default function MFAPage() {
         
         <h1 style={{ fontSize: '28px', fontWeight: 800, marginBottom: '12px', color: '#000' }}>Verification</h1>
         <p style={{ color: '#666', fontSize: '15px', marginBottom: '40px', lineHeight: '1.5' }}>
-          For your security, we've sent a 6-digit code to your mobile device ending in **00.
+          For your security, we&apos;ve sent a 6-digit code to your mobile device ending in **00.
         </p>
 
         <form onSubmit={handleVerify}>
@@ -80,7 +80,7 @@ export default function MFAPage() {
         </form>
 
         <p style={{ marginTop: '32px', fontSize: '14px', color: '#666' }}>
-          Didn't receive the code? <a href="#" style={{ color: 'var(--wf-blue)', fontWeight: 600, textDecoration: 'none' }}>Resend Code</a>
+          Didn&apos;t receive the code? <a href="#" style={{ color: 'var(--wf-blue)', fontWeight: 600, textDecoration: 'none' }}>Resend Code</a>
         </p>
 
         <div style={{ marginTop: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', color: '#1a7d1a', fontSize: '12px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px' }}>

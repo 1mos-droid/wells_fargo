@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Construction, ArrowLeft } from 'lucide-react';
 
 export default function MaintenancePage() {
@@ -12,9 +13,9 @@ export default function MaintenancePage() {
           This section of <strong>Wells Fargo Online Banking</strong> is currently under maintenance. We are working to provide you with a better experience. Please check back later.
         </p>
         
-        <a href="/" className="btn btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+        <Link href="/" className="btn btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
           <ArrowLeft size={18} /> Return to Accounts
-        </a>
+        </Link>
 
         <div style={{ marginTop: '40px', paddingTop: '30px', borderTop: '1px solid var(--wf-border-light)', fontSize: '13px', fontStyle: 'italic', opacity: 0.6 }}>
           Reference: SYS-MT-2026

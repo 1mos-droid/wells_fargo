@@ -1,4 +1,4 @@
-import { ArrowLeft, LogOut, ShieldCheck } from 'lucide-react';
+import { LogOut, ShieldCheck } from 'lucide-react';
 import Link from 'next/link';
 
 export default function SignOffPage() {

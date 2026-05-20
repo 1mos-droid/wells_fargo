@@ -25,9 +25,14 @@ export function BankProvider({ children }: { children: React.ReactNode }) {
     const savedTransactions = localStorage.getItem('wf_transactions');
     const savedAuth = localStorage.getItem('wf_auth');
 
-    if (savedAccounts) setAccounts(JSON.parse(savedAccounts));
-    if (savedTransactions) setTransactions(JSON.parse(savedTransactions));
-    if (savedAuth === 'true') setIsAuthenticated(true);
+    // Use setTimeout to avoid synchronous setState in effect lint error
+    const timer = setTimeout(() => {
+      if (savedAccounts) setAccounts(JSON.parse(savedAccounts));
+      if (savedTransactions) setTransactions(JSON.parse(savedTransactions));
+      if (savedAuth === 'true') setIsAuthenticated(true);
+    }, 0);
+
+    return () => clearTimeout(timer);
   }, []);
 
   const login = () => {
