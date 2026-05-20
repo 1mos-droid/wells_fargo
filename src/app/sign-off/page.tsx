@@ -1,4 +1,5 @@
 import { ArrowLeft, LogOut, ShieldCheck } from 'lucide-react';
+import Link from 'next/link';
 
 export default function SignOffPage() {
   return (
@@ -13,7 +14,7 @@ export default function SignOffPage() {
         </p>
         
         <div style={{ display: 'flex', gap: '16px', justifyContent: 'center' }}>
-          <a href="/login" className="btn btn-primary" style={{ minWidth: '180px', height: '56px', borderRadius: '8px', fontSize: '16px' }}>Sign On Again</a>
+          <Link href="/login" className="btn btn-primary" style={{ minWidth: '180px', height: '56px', borderRadius: '8px', fontSize: '16px' }}>Sign On Again</Link>
         </div>
 
         <div style={{ marginTop: '60px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', color: '#1a7d1a', fontSize: '13px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px' }}>

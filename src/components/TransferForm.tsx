@@ -4,9 +4,11 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useBank } from '@/context/BankContext';
 import { CheckCircle2, Loader2 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 export default function TransferForm() {
   const { accounts, addTransaction } = useBank();
+  const router = useRouter();
   
   const [formData, setFormData] = useState({
     fromAccount: accounts[0].id,
@@ -28,30 +30,17 @@ export default function TransferForm() {
     e.preventDefault();
     setStatus('loading');
     
-    try {
-      const response = await fetch('/api/send-money', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
-
-      setTimeout(() => {
-        if (response.ok) {
-          addTransaction({
-            id: 't-' + Date.now(),
-            date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
-            description: 'Intl Transfer: ' + formData.recipientName,
-            amount: -Number(formData.amount),
-            type: 'debit'
-          }, formData.fromAccount);
-          setStatus('success');
-        } else {
-          setStatus('error');
-        }
-      }, 2000);
-    } catch (err) {
-      setStatus('error');
-    }
+    // Simulate API processing for static hosting
+    setTimeout(() => {
+      addTransaction({
+        id: 't-' + Date.now(),
+        date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+        description: 'Intl Transfer: ' + formData.recipientName,
+        amount: -Number(formData.amount),
+        type: 'debit'
+      }, formData.fromAccount);
+      setStatus('success');
+    }, 2000);
   };
 
   return (
@@ -75,7 +64,7 @@ export default function TransferForm() {
               <CheckCircle2 size={64} color="#008542" style={{ margin: '0 auto 32px' }} />
               <h2 style={{ fontSize: '32px', fontWeight: 400, marginBottom: '16px' }}>Transfer Successfully Authorized.</h2>
               <p style={{ color: '#666', marginBottom: '48px' }}>The funds have been dispatched and are awaiting institutional settlement.</p>
-              <button onClick={() => window.location.href = '/'} className="btn-wf">Return to Accounts</button>
+              <button onClick={() => router.push('/')} className="btn-wf">Return to Accounts</button>
             </motion.div>
           ) : (
             <motion.div 
@@ -136,7 +125,7 @@ export default function TransferForm() {
                   <button type="submit" className="btn-wf" disabled={status === 'loading'}>
                     {status === 'loading' ? <><Loader2 className="animate-spin" size={20} style={{ marginRight: '12px' }} /> Authorizing...</> : 'Send Money Now'}
                   </button>
-                  <button type="button" onClick={() => window.location.href = '/'} className="btn-wf btn-secondary">Cancel</button>
+                  <button type="button" onClick={() => router.push('/')} className="btn-wf btn-secondary">Cancel</button>
                 </div>
               </form>
             </motion.div>

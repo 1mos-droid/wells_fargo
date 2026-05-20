@@ -1,9 +1,11 @@
 'use client';
 
 import { useBank } from '@/context/BankContext';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
   const { accounts } = useBank();
+  const router = useRouter();
   const totalBalance = accounts.reduce((acc, curr) => acc + curr.balance, 0);
 
   return (
@@ -80,9 +82,9 @@ export default function Home() {
             <div className="card-title" style={{ padding: '16px 20px', background: 'var(--wf-blue)', color: 'white', border: 'none' }}>Quick Actions</div>
             <div className="card-content" style={{ padding: '24px' }}>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                <button className="btn-wf" style={{ width: '100%', height: '48px' }} onClick={() => window.location.href = '/transfer'}>Transfer Money</button>
-                <button className="btn-wf btn-secondary" style={{ width: '100%', height: '48px' }} onClick={() => window.location.href = '/activity'}>Pay Bills</button>
-                <button className="btn-wf btn-secondary" style={{ width: '100%', height: '48px' }} onClick={() => window.location.href = '/activity'}>Statements & Documents</button>
+                <button className="btn-wf" style={{ width: '100%', height: '48px' }} onClick={() => router.push('/transfer')}>Transfer Money</button>
+                <button className="btn-wf btn-secondary" style={{ width: '100%', height: '48px' }} onClick={() => router.push('/activity')}>Pay Bills</button>
+                <button className="btn-wf btn-secondary" style={{ width: '100%', height: '48px' }} onClick={() => router.push('/activity')}>Statements & Documents</button>
               </div>
             </div>
           </div>

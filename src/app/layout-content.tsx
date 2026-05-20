@@ -2,6 +2,7 @@
 
 import { useBank } from '@/context/BankContext';
 import { useRouter, usePathname } from 'next/navigation';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { Loader2 } from 'lucide-react';
 import "./globals.css";
@@ -57,7 +58,7 @@ export default function LayoutContent({
             </div>
             <header>
               <div className="container header-main">
-                <a href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
+                <Link href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
                   <div style={{ background: '#d71e28', padding: '10px 16px', borderRadius: '4px', display: 'flex', alignItems: 'center', boxShadow: '0 2px 8px rgba(0,0,0,0.15)' }}>
                     <svg width="180" height="28" viewBox="0 0 180 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                       {/* W */}
@@ -81,13 +82,13 @@ export default function LayoutContent({
                       </g>
                     </svg>
                   </div>
-                </a>
+                </Link>
                 <nav>
                   <ul style={{ display: 'flex', alignItems: 'center' }}>
-                    <li><a href="/" className={pathname === '/' ? 'active' : ''}>Accounts</a></li>
-                    <li><a href="/transfer" className={pathname === '/transfer' ? 'active' : ''}>Transfer & Pay</a></li>
-                    <li><a href="/activity" className={pathname === '/activity' ? 'active' : ''}>Activity</a></li>
-                    <li><a href="/profile" className={pathname === '/profile' ? 'active' : ''}>Profile</a></li>
+                    <li><Link href="/" className={pathname === '/' ? 'active' : ''}>Accounts</Link></li>
+                    <li><Link href="/transfer" className={pathname === '/transfer' ? 'active' : ''}>Transfer & Pay</Link></li>
+                    <li><Link href="/activity" className={pathname === '/activity' ? 'active' : ''}>Activity</Link></li>
+                    <li><Link href="/profile" className={pathname === '/profile' ? 'active' : ''}>Profile</Link></li>
                     <li>
                       <div style={{ marginLeft: '15px', padding: '4px 12px', background: 'rgba(255,255,255,0.1)', borderRadius: '20px', display: 'flex', alignItems: 'center', gap: '6px', fontSize: '11px', color: 'white', border: '1px solid rgba(255,255,255,0.3)' }}>
                         <div style={{ width: '8px', height: '8px', background: '#4CAF50', borderRadius: '50%', boxShadow: '0 0 4px #4CAF50' }}></div>
@@ -108,11 +109,11 @@ export default function LayoutContent({
           <footer>
             <div className="container">
               <div className="footer-links">
-                <a href="/privacy">Privacy, Cookies, Security & Legal</a>
-                <a href="/privacy">Notice of Data Collection</a>
-                <a href="/privacy">General Terms of Use</a>
-                <a href="/security">Online Access Agreement</a>
-                <a href="/support">Contact Us</a>
+                <Link href="/privacy">Privacy, Cookies, Security & Legal</Link>
+                <Link href="/privacy">Notice of Data Collection</Link>
+                <Link href="/privacy">General Terms of Use</Link>
+                <Link href="/security">Online Access Agreement</Link>
+                <Link href="/support">Contact Us</Link>
               </div>
               <p>&copy; 1999 - 2026 Wells Fargo. All rights reserved. Member FDIC.</p>
               <div className="disclaimer">
