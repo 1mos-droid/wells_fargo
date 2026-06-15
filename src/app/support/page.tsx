@@ -1,24 +1,55 @@
-import Link from 'next/link';
-import { Construction, ArrowLeft } from 'lucide-react';
+'use client';
 
-export default function MaintenancePage() {
+import { useRouter } from 'next/navigation';
+import { ArrowLeft, Phone, Mail, MessageSquare, ChevronRight } from 'lucide-react';
+
+export default function SupportPage() {
+  const router = useRouter();
+
+  const contactOptions = [
+    { icon: <Phone size={20} />, label: 'Call Us', value: '1-800-869-3557' },
+    { icon: <MessageSquare size={20} />, label: 'Message Center', value: 'Chat with an agent' },
+    { icon: <Mail size={20} />, label: 'Email Support', value: 'Reply in 24 hours' },
+  ];
+
   return (
-    <div className="animate-in" style={{ textAlign: 'center', padding: '100px 0' }}>
-      <div style={{ background: 'white', maxWidth: '600px', margin: '0 auto', padding: '60px 40px', borderRadius: '12px', boxShadow: 'var(--wf-shadow)', border: '1px solid var(--wf-border-light)' }}>
-        <div style={{ width: '80px', height: '80px', background: '#fff5f5', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px' }}>
-          <Construction size={40} color="var(--wf-red)" />
+    <div className="animate-in">
+      <header className="header-row" style={{ borderBottom: '1px solid #EEE', background: 'white' }}>
+        <button onClick={() => router.push('/dashboard')} style={{ display: 'flex', alignItems: 'center', gap: '8px', background: 'none', border: 'none', fontWeight: 600, cursor: 'pointer', fontSize: '14px' }}>
+          <ArrowLeft size={20} /> Back
+        </button>
+        <div className="serif-logo" style={{ fontSize: '18px', position: 'absolute', left: '50%', transform: 'translateX(-50%)' }}>
+          WELLS FARGO
         </div>
-        <h1 style={{ fontSize: '28px', fontWeight: 800, marginBottom: '16px' }}>Under Construction</h1>
-        <p style={{ color: 'var(--wf-text-gray)', marginBottom: '40px', lineHeight: '1.6' }}>
-          This section of <strong>Wells Fargo Online Banking</strong> is currently under maintenance. We are working to provide you with a better experience. Please check back later.
-        </p>
-        
-        <Link href="/" className="btn btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-          <ArrowLeft size={18} /> Return to Accounts
-        </Link>
+        <div style={{ width: 60 }}></div>
+      </header>
 
-        <div style={{ marginTop: '40px', paddingTop: '30px', borderTop: '1px solid var(--wf-border-light)', fontSize: '13px', fontStyle: 'italic', opacity: 0.6 }}>
-          Reference: SYS-MT-2026
+      <div className="page-container" style={{ maxWidth: '600px', paddingTop: '40px' }}>
+        <h1 className="offer-h1" style={{ fontSize: '32px', marginBottom: '8px' }}>Help & Support</h1>
+        <p style={{ color: '#666', marginBottom: '32px' }}>We&apos;re here to help you 24/7.</p>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          {contactOptions.map((item, idx) => (
+            <div key={idx} style={{ background: 'white', padding: '20px', borderRadius: '16px', border: '1px solid #EEE', display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                <div style={{ color: '#D1121F' }}>{item.icon}</div>
+                <div>
+                  <div style={{ fontWeight: 700, fontSize: '16px' }}>{item.label}</div>
+                  <div style={{ fontSize: '14px', color: '#666' }}>{item.value}</div>
+                </div>
+              </div>
+              <ChevronRight size={20} color="#CCC" />
+            </div>
+          ))}
+        </div>
+
+        <div style={{ marginTop: '40px' }}>
+          <h2 style={{ fontSize: '20px', fontWeight: 700, marginBottom: '16px' }}>Frequently Asked Questions</h2>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            <div style={{ padding: '16px', background: 'white', border: '1px solid #EEE', borderRadius: '12px', fontSize: '14px', fontWeight: 600 }}>Why is my account on hold?</div>
+            <div style={{ padding: '16px', background: 'white', border: '1px solid #EEE', borderRadius: '12px', fontSize: '14px', fontWeight: 600 }}>How do I reset my password?</div>
+            <div style={{ padding: '16px', background: 'white', border: '1px solid #EEE', borderRadius: '12px', fontSize: '14px', fontWeight: 600 }}>What is my routing number?</div>
+          </div>
         </div>
       </div>
     </div>

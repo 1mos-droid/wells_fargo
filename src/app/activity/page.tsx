@@ -1,61 +1,64 @@
 'use client';
 
 import { useBank } from '@/context/BankContext';
-import { Search, Download, Filter } from 'lucide-react';
+import { Search, Download, Filter, ArrowLeft } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 export default function ActivityPage() {
   const { transactions } = useBank();
+  const router = useRouter();
   
   return (
-    <div className="animate">
-      <div className="hero-section">
-        <div className="container">
-          <p style={{ color: '#BA0C2F', fontWeight: 700, textTransform: 'uppercase', fontSize: '12px', letterSpacing: '2px', marginBottom: '16px' }}>History</p>
-          <h1>Transactional Activity.</h1>
+    <div className="animate-in">
+      {/* Header */}
+      <header className="header-row" style={{ borderBottom: '1px solid #EEE', background: 'white' }}>
+        <button onClick={() => router.push('/dashboard')} style={{ display: 'flex', alignItems: 'center', gap: '8px', background: 'none', border: 'none', fontWeight: 600, cursor: 'pointer', fontSize: '14px' }}>
+          <ArrowLeft size={20} /> Back
+        </button>
+        <div className="serif-logo" style={{ fontSize: '18px', position: 'absolute', left: '50%', transform: 'translateX(-50%)' }}>
+          WELLS FARGO
+        </div>
+        <div style={{ width: 60 }}></div>
+      </header>
+
+      <div className="page-container" style={{ maxWidth: '800px', paddingTop: '40px' }}>
+        <h1 className="offer-h1" style={{ fontSize: '32px', marginBottom: '32px' }}>Activity</h1>
+
+        <div style={{ display: 'flex', gap: '12px', marginBottom: '32px', overflowX: 'auto', paddingBottom: '8px' }}>
+          <button style={{ padding: '8px 16px', background: 'black', color: 'white', border: 'none', borderRadius: '20px', fontSize: '14px', fontWeight: 600, whiteSpace: 'nowrap' }}>
+            All
+          </button>
+          <button style={{ padding: '8px 16px', background: 'white', color: 'black', border: '1px solid #CCC', borderRadius: '20px', fontSize: '14px', fontWeight: 600, whiteSpace: 'nowrap' }}>
+            Deposits
+          </button>
+          <button style={{ padding: '8px 16px', background: 'white', color: 'black', border: '1px solid #CCC', borderRadius: '20px', fontSize: '14px', fontWeight: 600, whiteSpace: 'nowrap' }}>
+            Withdrawals
+          </button>
+        </div>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1px', background: '#EEE' }}>
+          {transactions.map((tx) => (
+            <div key={tx.id} style={{ background: 'white', padding: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div>
+                <div style={{ fontWeight: 700, fontSize: '16px' }}>{tx.description}</div>
+                <div style={{ fontSize: '13px', color: '#666' }}>{tx.date}</div>
+              </div>
+              <div style={{ textAlign: 'right', fontWeight: 700, fontSize: '16px', color: tx.amount > 0 ? '#008542' : 'black' }}>
+                {tx.amount > 0 ? '+' : ''}{tx.amount.toLocaleString(undefined, { minimumFractionDigits: 2 })}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div style={{ marginTop: '40px', textAlign: 'center' }}>
+          <button style={{ background: 'none', border: 'none', color: '#666', fontSize: '14px', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '8px', margin: '0 auto' }}>
+            <Download size={16} /> Export statements
+          </button>
         </div>
       </div>
 
-      <div className="container" style={{ marginTop: '60px' }}>
-        <div style={{ display: 'flex', gap: '20px', marginBottom: '40px' }}>
-          <div style={{ position: 'relative', flex: 1 }}>
-            <Search size={20} style={{ position: 'absolute', right: '0', top: '20px', color: '#888' }} />
-            <input 
-              type="text" 
-              placeholder="Filter by description..." 
-              className="input-field"
-            />
-          </div>
-          <button className="btn-wf btn-secondary" style={{ marginTop: '20px' }}>
-            <Filter size={16} style={{ marginRight: '8px' }} /> View Options
-          </button>
-          <button className="btn-wf btn-secondary" style={{ marginTop: '20px' }}>
-            <Download size={16} style={{ marginRight: '8px' }} /> Export Statement
-          </button>
-        </div>
-
-        <table className="account-table">
-          <thead>
-            <tr>
-              <th>Date of Execution</th>
-              <th>Description of Transaction</th>
-              <th style={{ textAlign: 'right' }}>Amount ($)</th>
-            </tr>
-          </thead>
-          <tbody>
-            {transactions.map((tx) => (
-              <tr key={tx.id} className="account-row">
-                <td className="mono" style={{ padding: '24px 0' }}>{tx.date}</td>
-                <td>
-                  <div style={{ fontWeight: 600 }}>{tx.description}</div>
-                  <div style={{ fontSize: '11px', color: '#888', textTransform: 'uppercase', letterSpacing: '0.5px', marginTop: '4px' }}>Settled</div>
-                </td>
-                <td className="account-balance mono" style={{ color: tx.amount > 0 ? '#008542' : 'inherit' }}>
-                  {tx.amount > 0 ? '+' : '-'}{Math.abs(tx.amount).toLocaleString(undefined, { minimumFractionDigits: 2 })}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <div className="bottom-footer" style={{ marginTop: '60px' }}>
+        Deposit products offered by Wells Fargo Bank, N.A. Member FDIC.
       </div>
     </div>
   );

@@ -1,24 +1,53 @@
-import Link from 'next/link';
-import { Construction, ArrowLeft } from 'lucide-react';
+'use client';
 
-export default function MaintenancePage() {
+import { useRouter } from 'next/navigation';
+import { ArrowLeft, FileText, Shield, Eye, ChevronRight } from 'lucide-react';
+
+export default function PrivacyPage() {
+  const router = useRouter();
+
+  const privacySections = [
+    { icon: <FileText size={20} />, label: 'Privacy Policy', desc: 'How we handle your information' },
+    { icon: <Shield size={20} />, label: 'Data Security', desc: 'Our encryption standards' },
+    { icon: <Eye size={20} />, label: 'Data Collection', desc: 'What we track and why' },
+  ];
+
   return (
-    <div className="animate-in" style={{ textAlign: 'center', padding: '100px 0' }}>
-      <div style={{ background: 'white', maxWidth: '600px', margin: '0 auto', padding: '60px 40px', borderRadius: '12px', boxShadow: 'var(--wf-shadow)', border: '1px solid var(--wf-border-light)' }}>
-        <div style={{ width: '80px', height: '80px', background: '#fff5f5', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px' }}>
-          <Construction size={40} color="var(--wf-red)" />
+    <div className="animate-in">
+      <header className="header-row" style={{ borderBottom: '1px solid #EEE', background: 'white' }}>
+        <button onClick={() => router.push('/dashboard')} style={{ display: 'flex', alignItems: 'center', gap: '8px', background: 'none', border: 'none', fontWeight: 600, cursor: 'pointer', fontSize: '14px' }}>
+          <ArrowLeft size={20} /> Back
+        </button>
+        <div className="serif-logo" style={{ fontSize: '18px', position: 'absolute', left: '50%', transform: 'translateX(-50%)' }}>
+          WELLS FARGO
         </div>
-        <h1 style={{ fontSize: '28px', fontWeight: 800, marginBottom: '16px' }}>Under Construction</h1>
-        <p style={{ color: 'var(--wf-text-gray)', marginBottom: '40px', lineHeight: '1.6' }}>
-          This section of <strong>Wells Fargo Online Banking</strong> is currently under maintenance. We are working to provide you with a better experience. Please check back later.
-        </p>
-        
-        <Link href="/" className="btn btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-          <ArrowLeft size={18} /> Return to Accounts
-        </Link>
+        <div style={{ width: 60 }}></div>
+      </header>
 
-        <div style={{ marginTop: '40px', paddingTop: '30px', borderTop: '1px solid var(--wf-border-light)', fontSize: '13px', fontStyle: 'italic', opacity: 0.6 }}>
-          Reference: SYS-MT-2026
+      <div className="page-container" style={{ maxWidth: '600px', paddingTop: '40px' }}>
+        <h1 className="offer-h1" style={{ fontSize: '32px', marginBottom: '8px' }}>Privacy & Legal</h1>
+        <p style={{ color: '#666', marginBottom: '32px' }}>Your trust is our highest priority.</p>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          {privacySections.map((item, idx) => (
+            <div key={idx} style={{ background: 'white', padding: '20px', borderRadius: '16px', border: '1px solid #EEE', display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                <div style={{ color: '#D1121F' }}>{item.icon}</div>
+                <div>
+                  <div style={{ fontWeight: 700, fontSize: '16px' }}>{item.label}</div>
+                  <div style={{ fontSize: '13px', color: '#666' }}>{item.desc}</div>
+                </div>
+              </div>
+              <ChevronRight size={20} color="#CCC" />
+            </div>
+          ))}
+        </div>
+
+        <div style={{ marginTop: '40px', padding: '24px', background: 'white', border: '1px solid #EEE', borderRadius: '16px' }}>
+          <h3 style={{ fontWeight: 700, fontSize: '18px', marginBottom: '12px' }}>Legal Disclosure</h3>
+          <p style={{ fontSize: '14px', color: '#666', lineHeight: '1.6' }}>
+            Investment and Insurance Products are: Not Insured by the FDIC or Any Federal Government Agency | Not a Deposit or Other Obligation of, or Guaranteed by, the Bank or Any Bank Affiliate | Subject to Investment Risks, Including Possible Loss of the Principal Amount Invested.
+          </p>
         </div>
       </div>
     </div>

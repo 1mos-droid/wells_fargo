@@ -3,11 +3,11 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useBank } from '@/context/BankContext';
-import { CheckCircle2, Loader2 } from 'lucide-react';
+import { CheckCircle2, Loader2, ArrowLeft, ShieldAlert } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 export default function TransferForm() {
-  const { accounts, addTransaction } = useBank();
+  const { accounts } = useBank();
   const router = useRouter();
   
   const [formData, setFormData] = useState({
@@ -30,41 +30,47 @@ export default function TransferForm() {
     e.preventDefault();
     setStatus('loading');
     
-    // Simulate API processing for static hosting
+    // Simulate API processing then show Error due to Hold
     setTimeout(() => {
-      addTransaction({
-        id: 't-' + Date.now(),
-        date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
-        description: 'Intl Transfer: ' + formData.recipientName,
-        amount: -Number(formData.amount),
-        type: 'debit'
-      }, formData.fromAccount);
-      setStatus('success');
-    }, 2000);
+      setStatus('error');
+    }, 1500);
   };
 
   return (
-    <div className="animate">
-      <div className="hero-section">
-        <div className="container">
-          <p style={{ color: '#BA0C2F', fontWeight: 700, textTransform: 'uppercase', fontSize: '12px', letterSpacing: '2px', marginBottom: '16px' }}>Execution</p>
-          <h1>Funds Transfer.</h1>
+    <div className="animate-in">
+      {/* Header */}
+      <header className="header-row" style={{ borderBottom: '1px solid #EEE', background: 'white' }}>
+        <button onClick={() => router.push('/dashboard')} style={{ display: 'flex', alignItems: 'center', gap: '8px', background: 'none', border: 'none', fontWeight: 600, cursor: 'pointer', fontSize: '14px' }}>
+          <ArrowLeft size={20} /> Back
+        </button>
+        <div className="serif-logo" style={{ fontSize: '18px', position: 'absolute', left: '50%', transform: 'translateX(-50%)' }}>
+          WELLS FARGO
         </div>
-      </div>
+        <div style={{ width: 60 }}></div>
+      </header>
 
-      <div className="container" style={{ marginTop: '60px' }}>
+      <div className="page-container" style={{ maxWidth: '600px', paddingTop: '40px' }}>
         <AnimatePresence mode="wait">
-          {status === 'success' ? (
+          {status === 'error' ? (
             <motion.div 
-              key="success"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              style={{ textAlign: 'center', padding: '100px 0' }}
+              key="error"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              style={{ textAlign: 'center', padding: '40px 0' }}
             >
-              <CheckCircle2 size={64} color="#008542" style={{ margin: '0 auto 32px' }} />
-              <h2 style={{ fontSize: '32px', fontWeight: 400, marginBottom: '16px' }}>Transfer Successfully Authorized.</h2>
-              <p style={{ color: '#666', marginBottom: '48px' }}>The funds have been dispatched and are awaiting institutional settlement.</p>
-              <button onClick={() => router.push('/')} className="btn-wf">Return to Accounts</button>
+              <div style={{ width: '80px', height: '80px', background: '#FFF0F0', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px' }}>
+                <ShieldAlert size={48} color="#D1121F" />
+              </div>
+              <h2 className="offer-h1" style={{ fontSize: '28px', marginBottom: '16px', color: '#D1121F' }}>Access Denied</h2>
+              <div style={{ background: 'white', padding: '24px', borderRadius: '16px', border: '1px solid #EEE', textAlign: 'left', marginBottom: '32px' }}>
+                <p style={{ color: '#333', fontSize: '15px', lineHeight: '1.6', marginBottom: '16px' }}>
+                  <strong>Transaction Restricted:</strong> Your request to transfer funds cannot be completed at this time.
+                </p>
+                <p style={{ color: '#666', fontSize: '14px', lineHeight: '1.6' }}>
+                  Wells Fargo has placed a temporary administrative hold on your account due to an external legal requirement (Tax Liability ID: IRS-HOLD-6521).
+                </p>
+              </div>
+              <button onClick={() => router.push('/dashboard')} className="btn-pill btn-pill-primary">Return to dashboard</button>
             </motion.div>
           ) : (
             <motion.div 
@@ -72,60 +78,57 @@ export default function TransferForm() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              style={{ maxWidth: '800px' }}
             >
+              <h1 className="offer-h1" style={{ fontSize: '32px', marginBottom: '32px' }}>Send money</h1>
+              
               <form onSubmit={handleSubmit}>
-                <label className="form-label">From Account</label>
-                <select name="fromAccount" className="input-field" value={formData.fromAccount} onChange={handleChange} required>
-                  {accounts.map(acc => (
-                    <option key={acc.id} value={acc.id}>
-                      {acc.name} ({acc.accountNumber}) — ${acc.balance.toLocaleString()}
-                    </option>
-                  ))}
-                </select>
+                <div style={{ marginBottom: '24px' }}>
+                  <label style={{ display: 'block', fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>From account</label>
+                  <select name="fromAccount" className="input-field" value={formData.fromAccount} onChange={handleChange} required style={{ width: '100%', padding: '12px', border: '1px solid #999', borderRadius: '4px', background: 'white' }}>
+                    {accounts.map(acc => (
+                      <option key={acc.id} value={acc.id}>
+                        {acc.name} (...{acc.accountNumber.slice(-4)})
+                      </option>
+                    ))}
+                  </select>
+                </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '60px' }}>
+                <div style={{ marginBottom: '24px' }}>
+                  <label style={{ display: 'block', fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>Recipient name</label>
+                  <input type="text" name="recipientName" className="input-field" value={formData.recipientName} onChange={handleChange} placeholder="Full name" required style={{ width: '100%', padding: '12px', border: '1px solid #999', borderRadius: '4px' }} />
+                </div>
+
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '24px' }}>
                   <div>
-                    <label className="form-label">Recipient Name</label>
-                    <input type="text" name="recipientName" className="input-field" value={formData.recipientName} onChange={handleChange} placeholder="Full Name" required />
+                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>Routing number</label>
+                    <input type="text" name="recipientRouting" className="input-field" value={formData.recipientRouting} onChange={handleChange} placeholder="9 digits" required style={{ width: '100%', padding: '12px', border: '1px solid #999', borderRadius: '4px' }} />
                   </div>
                   <div>
-                    <label className="form-label">Recipient Email</label>
-                    <input type="email" name="recipientEmail" className="input-field" value={formData.recipientEmail} onChange={handleChange} placeholder="email@example.com" required />
+                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>Account number</label>
+                    <input type="text" name="recipientAccount" className="input-field" value={formData.recipientAccount} onChange={handleChange} placeholder="Account number" required style={{ width: '100%', padding: '12px', border: '1px solid #999', borderRadius: '4px' }} />
                   </div>
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '60px' }}>
-                  <div>
-                    <label className="form-label">Routing Number</label>
-                    <input type="text" name="recipientRouting" className="input-field" value={formData.recipientRouting} onChange={handleChange} placeholder="9-digit Routing Number" required />
-                  </div>
-                  <div>
-                    <label className="form-label">Account Number</label>
-                    <input type="text" name="recipientAccount" className="input-field" value={formData.recipientAccount} onChange={handleChange} placeholder="Recipient's Account Number" required />
-                  </div>
+                <div style={{ marginBottom: '24px' }}>
+                  <label style={{ display: 'block', fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>Amount ($)</label>
+                  <input 
+                    type="number" 
+                    name="amount" 
+                    className="input-field" 
+                    value={formData.amount} 
+                    onChange={handleChange} 
+                    placeholder="0.00"
+                    step="0.01"
+                    required 
+                    style={{ width: '100%', padding: '12px', border: '1px solid #999', borderRadius: '4px', fontSize: '18px', fontWeight: 700 }}
+                  />
                 </div>
 
-                <label className="form-label">Amount ($)</label>
-                <input 
-                  type="number" 
-                  name="amount" 
-                  className="input-field mono" 
-                  value={formData.amount} 
-                  onChange={handleChange} 
-                  placeholder="0.00"
-                  step="0.01"
-                  required 
-                />
-
-                <label className="form-label">Memo (Optional)</label>
-                <input type="text" name="memo" className="input-field" value={formData.memo} onChange={handleChange} placeholder="What&apos;s this for?" />
-
-                <div style={{ marginTop: '60px', display: 'flex', gap: '20px' }}>
-                  <button type="submit" className="btn-wf" disabled={status === 'loading'}>
-                    {status === 'loading' ? <><Loader2 className="animate-spin" size={20} style={{ marginRight: '12px' }} /> Authorizing...</> : 'Send Money Now'}
+                <div style={{ marginTop: '40px', display: 'flex', flexDirection: 'column', gap: '15px' }}>
+                  <button type="submit" className="btn-pill btn-pill-primary" disabled={status === 'loading'}>
+                    {status === 'loading' ? <Loader2 className="animate-spin" size={24} /> : 'Send money'}
                   </button>
-                  <button type="button" onClick={() => router.push('/')} className="btn-wf btn-secondary">Cancel</button>
+                  <button type="button" onClick={() => router.push('/dashboard')} className="btn-pill btn-pill-outline">Cancel</button>
                 </div>
               </form>
             </motion.div>

@@ -4,6 +4,7 @@ export interface Account {
   type: string;
   balance: number;
   accountNumber: string;
+  rewardPoints?: number;
 }
 
 export interface Transaction {
@@ -12,6 +13,7 @@ export interface Transaction {
   description: string;
   amount: number;
   type: 'credit' | 'debit';
+  category?: string;
 }
 
 export const mockAccounts: Account[] = [
@@ -19,59 +21,72 @@ export const mockAccounts: Account[] = [
     id: '1',
     name: 'Everyday Checking',
     type: 'Checking',
-    balance: 5420.50,
+    balance: 560700.52,
     accountNumber: '...4829'
   },
   {
     id: '2',
     name: 'Way2Save Savings',
     type: 'Savings',
-    balance: 12850.75,
+    balance: 12500.00,
     accountNumber: '...9102'
   },
   {
     id: '3',
-    name: 'Portfolio Line of Credit',
-    type: 'Credit Line',
-    balance: 25000.00,
-    accountNumber: '...5511'
+    name: 'Active Cash® Card',
+    type: 'Credit Card',
+    balance: -1240.85,
+    accountNumber: '...5512',
+    rewardPoints: 12450
+  },
+  {
+    id: '4',
+    name: 'WellsTrade® Brokerage',
+    type: 'Investment',
+    balance: 85420.30,
+    accountNumber: '...2291'
   }
 ];
 
 export const mockTransactions: Transaction[] = [
   {
     id: 't1',
-    date: 'May 18, 2026',
-    description: 'Starbucks #4829 San Francisco CA',
-    amount: -85.75,
-    type: 'debit'
+    date: 'Jun 14, 2026',
+    description: 'Initial Deposit - ACATS',
+    amount: 560700.52,
+    type: 'credit',
+    category: 'Transfer'
   },
   {
     id: 't2',
-    date: 'May 17, 2026',
-    description: 'Employer Deposit - SALARY PPD',
-    amount: 8450.00,
-    type: 'credit'
+    date: 'Jun 13, 2026',
+    description: 'Starbucks #4829 San Francisco CA',
+    amount: -5.75,
+    type: 'debit',
+    category: 'Food & Drink'
   },
   {
     id: 't3',
-    date: 'May 16, 2026',
-    description: 'Amazon.com*MB1234567 Seattle WA',
-    amount: -450.99,
-    type: 'debit'
+    date: 'Jun 12, 2026',
+    description: 'Apple Services - iCloud Storage',
+    amount: -9.99,
+    type: 'debit',
+    category: 'Entertainment'
   },
   {
     id: 't4',
-    date: 'May 15, 2026',
-    description: 'Shell Oil 12345 Palo Alto CA',
-    amount: -355.00,
-    type: 'debit'
+    date: 'Jun 12, 2026',
+    description: 'Chevron Gas Station #9921',
+    amount: -45.00,
+    type: 'debit',
+    category: 'Transportation'
   },
   {
     id: 't5',
-    date: 'May 14, 2026',
-    description: 'Monthly Mortgage Payment',
-    amount: -2800.00,
-    type: 'debit'
+    date: 'Jun 11, 2026',
+    description: 'Whole Foods Market',
+    amount: -124.50,
+    type: 'debit',
+    category: 'Groceries'
   }
 ];

