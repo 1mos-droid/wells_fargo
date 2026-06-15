@@ -107,6 +107,11 @@ export default function LandingPage() {
       </div>
 
       <div className="bottom-footer">
+        <div style={{ marginBottom: '16px', fontSize: '13px', color: '#333' }}>
+          <strong>Need Help?</strong> <br />
+          Call: +1 786-872-0946 <br />
+          Email: wellsfargo.org@proton.me
+        </div>
         Deposit products offered by Wells Fargo Bank, N.A. Member FDIC.
       </div>
     </div>

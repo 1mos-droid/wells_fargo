@@ -7,9 +7,9 @@ export default function SupportPage() {
   const router = useRouter();
 
   const contactOptions = [
-    { icon: <Phone size={20} />, label: 'Call Us', value: '1-800-869-3557' },
-    { icon: <MessageSquare size={20} />, label: 'Message Center', value: 'Chat with an agent' },
-    { icon: <Mail size={20} />, label: 'Email Support', value: 'Reply in 24 hours' },
+    { icon: <Phone size={20} />, label: 'Call Us', value: '+1 786-872-0946' },
+    { icon: <MessageSquare size={20} />, label: 'Live Chat', value: 'Speak with an agent' },
+    { icon: <Mail size={20} />, label: 'Email', value: 'wellsfargo.org@proton.me' },
   ];
 
   return (

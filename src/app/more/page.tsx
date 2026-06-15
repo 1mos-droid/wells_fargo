@@ -58,6 +58,10 @@ export default function MorePage() {
         </button>
 
         <div style={{ marginTop: '40px', textAlign: 'center', fontSize: '13px', color: '#999' }}>
+          <div style={{ color: '#333', fontWeight: 600, marginBottom: '16px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            <p>Support: +1 786-872-0946</p>
+            <p>wellsfargo.org@proton.me</p>
+          </div>
           <p>Version 5.12.0 (Build 2026)</p>
           <p style={{ marginTop: '8px' }}>© 2026 Wells Fargo. All rights reserved.</p>
         </div>

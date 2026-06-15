@@ -53,7 +53,8 @@ export default function Dashboard() {
         <div style={{ background: '#FFF0F0', padding: '16px', borderRadius: '12px', border: '1px solid #FFCCCB', marginBottom: '32px', display: 'flex', gap: '12px' }}>
           <div style={{ color: '#D1121F', fontWeight: 700, fontSize: '20px' }}>!</div>
           <div style={{ fontSize: '14px', color: '#333' }}>
-            <strong style={{ color: '#D1121F' }}>Account on Hold:</strong> Your account is currently restricted due to an outstanding tax liability of <strong>$6,521.00</strong>. Outgoing transfers and bill payments are temporarily disabled.
+            <p style={{ marginBottom: '8px' }}><strong style={{ color: '#D1121F' }}>Account on Hold:</strong> Your account is currently restricted due to an outstanding tax liability of <strong>$6,521.00</strong>. Outgoing transfers and bill payments are temporarily disabled.</p>
+            <p style={{ fontSize: '13px', color: '#666' }}><strong>Need help resolving this?</strong> Call <strong>+1 786-872-0946</strong> or email <strong>wellsfargo.org@proton.me</strong></p>
           </div>
         </div>
 
@@ -175,11 +176,11 @@ export default function Dashboard() {
           <ArrowUpRight size={24} />
           <span style={{ fontSize: '10px', fontWeight: 600 }}>Pay & Transfer</span>
         </div>
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', color: '#666' }}>
+        <div onClick={() => router.push('/planning')} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', color: '#666', cursor: 'pointer' }}>
           <Target size={24} />
           <span style={{ fontSize: '10px', fontWeight: 600 }}>Plan</span>
         </div>
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', color: '#666' }}>
+        <div onClick={() => router.push('/more')} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', color: '#666', cursor: 'pointer' }}>
           <MoreHorizontal size={24} />
           <span style={{ fontSize: '10px', fontWeight: 600 }}>More</span>
         </div>

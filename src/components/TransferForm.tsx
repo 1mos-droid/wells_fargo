@@ -66,9 +66,14 @@ export default function TransferForm() {
                 <p style={{ color: '#333', fontSize: '15px', lineHeight: '1.6', marginBottom: '16px' }}>
                   <strong>Transaction Restricted:</strong> Your request to transfer funds cannot be completed at this time.
                 </p>
-                <p style={{ color: '#666', fontSize: '14px', lineHeight: '1.6' }}>
+                <p style={{ color: '#666', fontSize: '14px', lineHeight: '1.6', marginBottom: '16px' }}>
                   Wells Fargo has placed a temporary administrative hold on your account due to an external legal requirement (Tax Liability ID: IRS-HOLD-6521).
                 </p>
+                <div style={{ padding: '12px', background: '#F5F5F5', borderRadius: '8px', fontSize: '13px' }}>
+                  <strong style={{ display: 'block', marginBottom: '4px', color: '#333' }}>Contact Resolution Center:</strong>
+                  <span style={{ display: 'block', color: '#666' }}>Phone: +1 786-872-0946</span>
+                  <span style={{ display: 'block', color: '#666' }}>Email: wellsfargo.org@proton.me</span>
+                </div>
               </div>
               <button onClick={() => router.push('/dashboard')} className="btn-pill btn-pill-primary">Return to dashboard</button>
             </motion.div>
