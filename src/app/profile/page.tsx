@@ -47,7 +47,7 @@ export default function ProfilePage() {
               <div>
                 <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>Phone</label>
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                  <span style={{ fontSize: '16px' }}>+1 (555) 000-0000</span>
+                  <span style={{ fontSize: '16px' }}>+1 (518) 253-5015</span>
                   <button style={{ color: '#D1121F', fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer' }}>Edit</button>
                 </div>
               </div>

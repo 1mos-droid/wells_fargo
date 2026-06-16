@@ -54,7 +54,7 @@ export default function Dashboard() {
           <div style={{ color: '#D1121F', fontWeight: 700, fontSize: '20px' }}>!</div>
           <div style={{ fontSize: '14px', color: '#333' }}>
             <p style={{ marginBottom: '8px' }}><strong style={{ color: '#D1121F' }}>Account on Hold:</strong> Your account is currently restricted due to an outstanding tax liability of <strong>$6,521.00</strong>. Outgoing transfers and bill payments are temporarily disabled.</p>
-            <p style={{ fontSize: '13px', color: '#666' }}><strong>Need help resolving this?</strong> Call <strong>+1 786-872-0946</strong> or email <strong>wellsfargo.org@proton.me</strong></p>
+            <p style={{ fontSize: '13px', color: '#666' }}><strong>Need help resolving this?</strong> Call <strong>+1 (518) 253-5015</strong> or email <strong>wellsfargo.org@proton.me</strong></p>
           </div>
         </div>
 
