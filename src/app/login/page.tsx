@@ -178,7 +178,7 @@ export default function LoginPage() {
             }}>
               <div style={{ width: '100%', height: '240px', overflow: 'hidden' }}>
                 <img 
-                  src="https://images.unsplash.com/photo-1591439657448-9f4b9ce436b9?q=80&w=1000&auto=format&fit=crop" 
+                  src="https://images.unsplash.com/photo-1589923188900-85dae523342b?q=80&w=1000&auto=format&fit=crop" 
                   alt="Two smiling Black women in a greenhouse."
                   style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 />

@@ -35,7 +35,7 @@ export default function Dashboard() {
       <div className="page-container" style={{ maxWidth: '600px', width: '100%', margin: '0 auto', boxSizing: 'border-box', padding: '0 20px' }}>
         {/* 2. Welcome & Hero Balance */}
         <div style={{ margin: '32px 0' }}>
-          <h1 style={{ fontSize: 'clamp(20px, 5vw, 24px)', fontWeight: 300, marginBottom: '8px', color: '#666' }}>Welcome</h1>
+          <h1 style={{ fontSize: 'clamp(20px, 5vw, 24px)', fontWeight: 300, marginBottom: '8px', color: '#666' }}>Welcome, Oscar</h1>
           <div style={{ fontSize: 'clamp(32px, 8vw, 42px)', fontWeight: 700, letterSpacing: '-0.02em' }}>
             ${totalCash.toLocaleString(undefined, { minimumFractionDigits: 2 })}
           </div>
