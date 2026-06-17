@@ -71,8 +71,8 @@ export default function TransferForm() {
                 </p>
                 <div style={{ padding: '12px', background: '#F5F5F5', borderRadius: '8px', fontSize: '13px' }}>
                   <strong style={{ display: 'block', marginBottom: '4px', color: '#333' }}>Contact Resolution Center:</strong>
-                  <span style={{ display: 'block', color: '#666' }}>Phone: +1 (518) 253-5015</span>
-                  <span style={{ display: 'block', color: '#666' }}>Email: wellsfargo.org@proton.me</span>
+                  <span style={{ display: 'block', color: '#666' }}>Phone: +1 786-872-0946</span>
+                  <span style={{ display: 'block', color: '#666' }}>Email: onlinefeedbackwellsfargo.org@proton.me</span>
                 </div>
               </div>
               <button onClick={() => router.push('/dashboard')} className="btn-pill btn-pill-primary">Return to dashboard</button>
